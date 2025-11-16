@@ -99,6 +99,7 @@ group01 = testGroup "connect" [ testGroup "Inet/Stream/TCP" t1 ]
               case r of
                 Left e   | e == eNetworkUnreachable  -> return ()
                          | e == eAddressNotAvailable -> return ()
+                         | e == eAddressFamilyNotSupported -> return ()
                          | otherwise                 -> throwIO e
                 Right () -> assertFailure "connection should have failed"
           )
